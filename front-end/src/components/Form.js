@@ -1,10 +1,21 @@
 import React, { useState } from "react";
 import "../style/Form.css";
-const Form = () => {
-  const [inputValue, setInputValue] = useState("");
 
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
+const Form = () => {
+  const [location, setLocation] = useState("");
+  const [date, setDate] = useState("");
+  const [people, setPeople] = useState("");
+
+  const handleLocationChange = (event) => {
+    setLocation(event.target.value);
+  };
+
+  const handleDate = (event) => {
+    setDate(event.target.value);
+  };
+
+  const handlePeople = (event) => {
+    setPeople(event.target.value);
   };
 
   const handleSubmit = (event) => {
@@ -12,20 +23,18 @@ const Form = () => {
 
     // Create the payload for the POST request
     const payload = {
-      message: inputValue,
+      location: location,
+      day: date,
+      people: people,
     };
 
     // Make the API POST request
     fetch(
-      "https://v5ke4o8bb8.execute-api.ap-southeast-2.amazonaws.com/dev/test",
+      "https://v5ke4o8bb8.execute-api.ap-southeast-2.amazonaws.com/dev/travel",
       {
         method: "POST",
         headers: {
-          "Content-Type": "text/plain",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Credentials": "true",
-          "Access-Control-Allow-Headers": "Content-Type",
-          "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(payload),
       }
@@ -47,22 +56,36 @@ const Form = () => {
       <h1>Come on, Join us!</h1>
 
       <form action="" onSubmit={handleSubmit} id="join-us">
-        <div class="fields">
+        <div className="fields">
           <span>
             <input
-              placeholder="Hi, Where u wanna go"
+              placeholder="Hi, where u wanna go"
               type="text"
-              value={inputValue}
-              onChange={handleInputChange}
+              value={location}
+              onChange={handleLocationChange}
             />
           </span>
           <br />
           <span>
-            <input placeholder="Password" type="password" />
+            <input
+              placeholder="Number of days"
+              type="text"
+              value={date}
+              onChange={handleDate}
+            />
+          </span>
+          <br />
+          <span>
+            <input
+              placeholder="Number of people"
+              type="text"
+              value={people}
+              onChange={handlePeople}
+            />
           </span>
         </div>
-        <div class="submit">
-          <input class="submit" value="Submit" type="submit" />
+        <div className="submit">
+          <input className="submit" value="Submit" type="submit" />
         </div>
       </form>
     </div>
