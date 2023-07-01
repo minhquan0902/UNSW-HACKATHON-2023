@@ -18,9 +18,14 @@ const Form = () => {
     fetch("https://v5ke4o8bb8.execute-api.ap-southeast-2.amazonaws.com/dev/test", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "text/plain",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
     })
       .then(response => response.json())
       .then(data => {
@@ -29,7 +34,7 @@ const Form = () => {
       })
       .catch(error => {
         // Handle any errors that occurred during the request
-        console.error(error);
+        console.log(error);
       });
   };
 
