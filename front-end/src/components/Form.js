@@ -68,7 +68,7 @@ const Form = () => {
           <br />
           <span>
             <input
-              placeholder="How many days"
+              placeholder="Number of days"
               type="text"
               value={date}
               onChange={handleDate}
@@ -77,7 +77,7 @@ const Form = () => {
           <br />
           <span>
             <input
-              placeholder="How many people"
+              placeholder="Number of people"
               type="text"
               value={people}
               onChange={handlePeople}
