@@ -128,7 +128,7 @@ input {
   padding: 0 18px;
 }
 
-input[type="button"] {
+input[type="submit"] {
   background: rgba(197, 62, 126, .33) ! important;
   color: #fff;
   position: relative;
