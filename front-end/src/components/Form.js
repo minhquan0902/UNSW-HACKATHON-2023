@@ -24,8 +24,8 @@ const Form = () => {
     // Create the payload for the POST request
     const payload = {
       location: location,
-      day: date,
-      people: people,
+      dayNum: date,
+      type: people,
     };
 
     // Make the API POST request
@@ -52,8 +52,8 @@ const Form = () => {
 
   return (
     <div className="container">
-      <h2>It's now or never</h2>
-      <h1>Come on, Join us!</h1>
+      <h2>Team 35</h2>
+      <h1>Traveling app</h1>
 
       <form action="" onSubmit={handleSubmit} id="join-us">
         <div className="fields">
