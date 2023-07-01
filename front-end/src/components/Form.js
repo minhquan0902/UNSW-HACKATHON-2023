@@ -30,7 +30,7 @@ const Form = () => {
 
     // Make the API POST request
     fetch(
-      "https://v5ke4o8bb8.execute-api.ap-southeast-2.amazonaws.com/dev/test",
+      "https://v5ke4o8bb8.execute-api.ap-southeast-2.amazonaws.com/dev/travel",
       {
         method: "POST",
         headers: {
