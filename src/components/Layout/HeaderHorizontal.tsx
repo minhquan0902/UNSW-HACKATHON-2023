@@ -90,7 +90,7 @@ class HeaderHorizontal extends Component<HeaderHorizontalProps> {
               <div className="brand-logo-collapsed">
                 <img
                   className="img-fluid"
-                  src="img/ANS-SINGLE_44x44.jpg"
+                  src="img/travelapp-logo.png"
                   alt="App Logo"
                 />
               </div>
