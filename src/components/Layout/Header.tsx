@@ -2,7 +2,7 @@
 import React, { FC } from "react";
 
 import ToggleFullscreen from "../Common/ToggleFullscreen";
-import { Logout, toggleSetting } from "../../store/actions/actions";
+import { toggleSetting } from "../../store/actions/actions";
 import { useDispatch } from "../../store/store";
 
 const Header: FC = () => {
@@ -23,11 +23,6 @@ const Header: FC = () => {
     dispatch(toggleSetting("offsidebarOpen"));
   };
 
-  const handleLogOut = (e: React.MouseEvent) => {
-    e.preventDefault();
-
-    dispatch(Logout());
-  };
   return (
     <header className="topnavbar-wrapper">
       {/* START Top Navbar */}
@@ -38,14 +33,14 @@ const Header: FC = () => {
             <div className="brand-logo">
               <img
                 className="img-fluid"
-                src="img/ans_official_logo.png"
+                src="img/travelapp-logo_rescale.png"
                 alt="App Logo"
               />
             </div>
             <div className="brand-logo-collapsed">
               <img
                 className="img-fluid"
-                src="img/ANS-SINGLE_44x44.jpg"
+                src="img/travelapp-logo.png"
                 alt="App Logo"
               />
             </div>
@@ -87,12 +82,7 @@ const Header: FC = () => {
           <li className="nav-item d-none d-md-block">
             <ToggleFullscreen className="nav-link" />
           </li>
-          {/* Logouts icon */}
-          <li className="nav-item">
-            <a className="nav-link" onClick={handleLogOut}>
-              <em className="icon-logout"></em>
-            </a>
-          </li>
+
           {/* START Offsidebar button */}
           <li className="nav-item">
             <a className="nav-link" href="" onClick={toggleoffsidebarOpen}>
