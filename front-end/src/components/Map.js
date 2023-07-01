@@ -4,16 +4,18 @@ import ResizePanel from "react-resize-panel";
 import Marker from "./Marker";
 import { Box, Typography, Card } from "@mui/material";
 
-const Map = () => {
+const Map = ({ data }) => {
+
+  console.log("MapData received in Map", data)
+
   const center = {
-    lat: 60.192059,
-    lng: 24.945831,
+    lat: data?.response?.Plans[0].Latitude,
+    lng: data?.response?.Plans[0].Longitude,
   };
   const zoom = 13;
 
-  const paragraph = `Day 1:\nMorning: Explore Sydney Harbour Bridge and take in the stunning views. Budget: Free.\nAfternoon: Visit the iconic Sydney Opera House and take a guided tour. Budget: Tour prices vary; check the official website for details.\nEvening: Enjoy dinner at Darling Harbour, with its wide range of waterfront restaurants. Budget: Prices vary depending on the restaurant.\n\n Day 2:\nMorning: Explore the Royal Botanic Garden Sydney and enjoy a leisurely walk through the beautiful gardens. Budget: Free.\nAfternoon: Take a ferry to Manly Beach and spend the afternoon relaxing on the sandy shores. Budget: Ferry ticket prices vary; check the official website for details.\nEvening: Enjoy dinner and drinks at The Rocks, a historic area with charming pubs and restaurants. Budget: Prices vary depending on the establishment`;
 
-  console.log(paragraph);
+
   return (
     <div
       style={{
@@ -49,7 +51,7 @@ const Map = () => {
                 }}
               >
                 <Typography variant="h5" style={{ marginTop: 30, color: "gray", fontWeight: "bold" }}>
-                  Ha Noi, Vietnam
+                  {data?.location}
                 </Typography>
                 <br />
                 <br />
@@ -62,7 +64,7 @@ const Map = () => {
                     marginBottom: 35,
                   }}
                 >
-                  <div style={{ whiteSpace: "pre-line" }}>{paragraph}</div>
+                  <div style={{ whiteSpace: "pre-line" }}>{data?.response?.Description}</div>
                 </Typography>
                 <div style={{ display: "flex", justifyContent: "center", marginBottom: 30 }}>
                   <Typography variant="body1" style={{ fontWeight: "bold" }}>
@@ -119,11 +121,21 @@ const Map = () => {
         defaultCenter={center}
         defaultZoom={zoom}
       >
-        <Marker lat={60.169787} lng={24.948776} />
-        <Marker lat={60.169587} lng={24.948576} />
+        {data?.response?.Plans.map((plan, index) => {
+          return (
+            <Marker
+              key={index}
+              lat={plan.Latitude}
+              lng={plan.Longitude}
+              Day={plan.Day}
+              Place={plan.Place}
+              Address={plan.Address}
+            />
+          );
+        })}
       </GoogleMapReact>
     </div >
-  );
+  )
 };
 
 export default Map;

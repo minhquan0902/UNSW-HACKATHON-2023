@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Marker = () => {
+const Marker = ({ Day, Place, Address }) => {
   const [showCard, setShowCard] = useState(false);
 
   const markerStyle = {
@@ -29,8 +29,8 @@ const Marker = () => {
       {showCard && (
         <div style={infoWindowStyle}>
           <div>
-            <h2>Marker details</h2>
-            <p>Additional details...</p>
+            <h2>{`${Day} - ${Place}`}</h2>
+            <p>{` ${Address}`}</p>
           </div>
         </div>
       )}
