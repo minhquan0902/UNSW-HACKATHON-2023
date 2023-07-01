@@ -114,8 +114,8 @@ input[type="submit"] {
   background: rgba(197, 62, 126, 0.33) !important;
   color: #fff;
   position: relative;
-  left: 9px;
-  top: 25px;
+  left: -10px;
+  top: 0px;
   width: 100px;
   cursor: pointer;
 }
