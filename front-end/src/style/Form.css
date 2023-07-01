@@ -44,7 +44,7 @@
 }
 
 body {
-  background: #2F1E27;
+  background: #2f1e27;
 }
 
 body {
@@ -92,7 +92,7 @@ body {
   position: relative;
   left: -22px;
   top: -11px;
-  background: #2F1E27;
+  background: #2f1e27;
 }
 
 form {
@@ -101,7 +101,7 @@ form {
 }
 
 .fields {
-  border-left: 2px solid #4c2639
+  border-left: 2px solid #4c2639;
 }
 
 .container span {
@@ -129,7 +129,7 @@ input {
 }
 
 input[type="submit"] {
-  background: rgba(197, 62, 126, .33) ! important;
+  background: rgba(197, 62, 126, 0.33) !important;
   color: #fff;
   position: relative;
   left: 9px;

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../style/Form.css";
 const Form = () => {
   const [inputValue, setInputValue] = useState("");
 
@@ -11,28 +12,30 @@ const Form = () => {
 
     // Create the payload for the POST request
     const payload = {
-      message: inputValue
+      message: inputValue,
     };
 
     // Make the API POST request
-    fetch("https://v5ke4o8bb8.execute-api.ap-southeast-2.amazonaws.com/dev/test", {
-      method: "POST",
-      headers: {
-        "Content-Type": "text/plain",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Credentials": "true",
-        "Access-Control-Allow-Headers": "Content-Type",
-        "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
-
-      },
-      body: JSON.stringify(payload),
-    })
-      .then(response => response.json())
-      .then(data => {
+    fetch(
+      "https://v5ke4o8bb8.execute-api.ap-southeast-2.amazonaws.com/dev/test",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "text/plain",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": "true",
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
+        },
+        body: JSON.stringify(payload),
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
         // Handle the response from the server
         console.log(data);
       })
-      .catch(error => {
+      .catch((error) => {
         // Handle any errors that occurred during the request
         console.log(error);
       });
