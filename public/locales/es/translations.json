@@ -1,0 +1,24 @@
+{
+  "dashboard": {
+    "WELCOME": "Bienvenido a ANS CENTER"
+  },
+  "topbar": {
+    "search": {
+      "PLACEHOLDER": "Tipea y pulsa enter.."
+    }
+  },
+  "sidebar": {
+    "WELCOME": "Bienvenido",
+    "heading": {
+      "HEADER": "Navegacion principal"
+    },
+    "nav": {
+      "WELCOME": "Bienvenido",
+      "menu": {
+        "MENU": "Menu",
+        "COMPONENTS": "Componentes"
+      },
+      "LOGIN": "login"
+    }
+  }
+}
