@@ -17,7 +17,8 @@ const Form = () => {
     "Sydney",
     "Cairo, Egypt",
     "Dubai, UAE",
-    "Shanghai, China", "Istanbul, Turkey",
+    "Shanghai, China",
+    "Istanbul, Turkey",
     "Rio de Janeiro, Brazil",
     "Singapore",
     "Moscow, Russia",
@@ -116,98 +117,110 @@ const Form = () => {
 
   return (
     <>
-      {!mapData ? <>
-        <div className="container">
-          <h2>AnhEmTravelling</h2>
-          <h1>Where d'you wanna go?</h1>
+      {!mapData ? (
+        <>
+          <div className="container">
+            <h2>AnhEmTravelling</h2>
+            <h1>Where d'you wanna go?</h1>
 
-          <form action="" onSubmit={handleSubmit} id="join-us">
-            <Autocomplete
-              options={dataCity}
-              getOptionLabel={(option) => option}
-              value={location}
-              style={{
-                color: "black",
+            <form action="" onSubmit={handleSubmit} id="join-us">
+              <Autocomplete
+                freeSolo
+                options={dataCity}
+                getOptionLabel={(option) => option}
+                value={location}
+                style={{
+                  color: "black",
 
-                borderRadius: 2,
-              }}
-              sx={{ width: "220px", marginRight: 3 }}
+                  borderRadius: 2,
+                }}
+                sx={{ width: "220px", marginRight: 3 }}
+                onChange={handleAutoCompleteChange}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    sx={{
+                      "& .MuiOutlinedInput-root": {
+                        borderRadius: "50px",
 
-              onChange={handleAutoCompleteChange}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  sx={{
-                    "& .MuiOutlinedInput-root": {
-                      borderRadius: "50px",
-
-                      legend: {
-                        marginLeft: "30px",
+                        legend: {
+                          marginLeft: "30px",
+                        },
                       },
-                    },
-                    "& .MuiAutocomplete-inputRoot": {
-                      paddingLeft: "20px !important",
-                      borderRadius: "50px",
-                    },
-                    "& .MuiInputLabel-outlined": {
-                      paddingLeft: "20px",
-                    },
-                    "& .MuiInputLabel-shrink": {
-                      marginLeft: "20px",
-                      paddingLeft: "10px",
-                      paddingRight: 0,
-                      background: "white",
-                    },
-                  }}
-                  placeholder="Select a destination"
-                  InputProps={{
-                    ...params.InputProps,
-                    style: {
-                      borderRadius: "1.6rem",
-                      backgroundColor: "white",
-                      height: "34px",
-                    },
-                  }}
+                      "& .MuiAutocomplete-inputRoot": {
+                        paddingLeft: "20px !important",
+                        borderRadius: "50px",
+                      },
+                      "& .MuiInputLabel-outlined": {
+                        paddingLeft: "20px",
+                      },
+                      "& .MuiInputLabel-shrink": {
+                        marginLeft: "20px",
+                        paddingLeft: "10px",
+                        paddingRight: 0,
+                        background: "white",
+                      },
+                    }}
+                    placeholder="Select a destination"
+                    InputProps={{
+                      ...params.InputProps,
+                      style: {
+                        borderRadius: "1.6rem",
+                        backgroundColor: "white",
+                        height: "34px",
+                      },
+                    }}
+                  />
+                )}
+              />
+
+              <br />
+              <br />
+              <span>
+                <input
+                  style={{ color: "black" }}
+                  placeholder="Number of days"
+                  type="text"
+                  value={date}
+                  onChange={handleDate}
                 />
-              )}
-            />
+              </span>
+              <br />
+              <span>
+                <input
+                  placeholder="Solo, Friends, Family"
+                  type="text"
+                  value={people}
+                  onChange={handlePeople}
+                />
+              </span>
 
-            <br />
-            <br />
-            <span>
-              <input
-                style={{ color: "black" }}
-                placeholder="Number of days"
-                type="text"
-                value={date}
-                onChange={handleDate}
-              />
-            </span>
-            <br />
-            <span>
-              <input
-                placeholder="Solo, Friends, Family"
-                type="text"
-                value={people}
-                onChange={handlePeople}
-              />
-            </span>
+              <div className="submit">
+                <input
+                  disabled={loading || !location || !date || !people}
+                  className="submit"
+                  value="Submit"
+                  type="submit"
+                />
+              </div>
+            </form>
 
-            <div className="submit">
-              <input disabled={loading} className="submit" value="Submit" type="submit" />
-            </div>
-          </form>
-
-
-          {loading && <Box sx={{ marginTop: 15 }}>
-            <CircularProgress />
-            <br />
-            <p style={{ color: 'white', fontSize: '24px' }}>Loading. Please wait ... </p>
-          </Box>}
-
-        </div></> : <>
-        <Map data={mapData} /></>}
-
+            {loading && (
+              <Box sx={{ marginTop: 15 }}>
+                <CircularProgress />
+                <br />
+                <p style={{ color: "white", fontSize: "24px" }}>
+                  Loading. Please wait ...{" "}
+                </p>
+              </Box>
+            )}
+          </div>
+        </>
+      ) : (
+        <>
+          <Map data={mapData} />
+        </>
+      )}
     </>
   );
 };
