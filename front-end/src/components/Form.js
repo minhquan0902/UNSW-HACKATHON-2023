@@ -94,7 +94,6 @@ const Form = () => {
     fetch(
       "https://v5ke4o8bb8.execute-api.ap-southeast-2.amazonaws.com/dev/travel",
       {
-        mode: "no-cors",
         method: "POST",
         headers: {
           "Content-Type": "application/json",
