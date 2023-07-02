@@ -16,6 +16,7 @@ functions:
           method: get 
   createRequest:
     handler: handler.createRequest
+    timeout: 60
     environment:
       REQUEST_TABLE : !Ref RequestTable
     iamRoleStatements:
@@ -27,6 +28,53 @@ functions:
       - http:
           path: travel 
           method: post 
+          cors: 
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+              - X-Amzn-Trace-Id
+            allowCredentials: false
+
+  postTest:
+    handler: handler.postTest
+    timeout: 60
+    events:
+      - http:
+          path: test 
+          method: post 
+          cors: 
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+              - X-Amzn-Trace-Id
+            allowCredentials: false
+
+
+  updateRequest:
+    handler: handler.updateRequest
+    timeout: 60
+    environment:
+      REQUEST_TABLE : !Ref RequestTable
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:UpdateItem
+        Resource: !GetAtt RequestTable.Arn
+    events:
+      - http:
+          path: travel/{id}
+          method: put 
+
 plugins:
   - serverless-iam-roles-per-function
 
