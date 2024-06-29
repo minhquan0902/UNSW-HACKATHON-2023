@@ -1,121 +1,109 @@
 /*fonts*/
-@import url(https://fonts.googleapis.com/css?family=PT+Sans:400,400italic);
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@400;500&display=swap");
 
-@import url(https://fonts.googleapis.com/css?family=Droid+Serif);
-
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  background: #f0f0f0; /* Light grey background for contrast */
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-body {
-  background: #2f1e27;
-}
-
-body {
-  counter-reset: section;
-  text-align: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .container {
-  position: relative;
-  top: 100px;
+  background: #fff; /* White background */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  padding: 40px 50px; /* Increased padding for more space */
+  width: 400px; /* Slightly wider */
+  text-align: center;
+  color: #333; /* Darker text for contrast */
 }
 
 .container h1,
 .container span {
-  font-family: "Pt Sans", helvetica, sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .container h1 {
-  text-align: center;
-  color: #fff;
-  font-weight: 100;
+  color: #333; /* Darker color for the heading */
+  font-weight: 600;
   font-size: 2em;
   margin-bottom: 10px;
 }
 
 .container h2 {
-  font-family: "droid serif";
+  font-family: "Roboto", sans-serif;
   font-style: italic;
-  color: #d3b6ca;
-  text-align: center;
+  color: #666; /* Grey color for subheading */
   font-size: 1.2em;
-}
-
-.container form span:before {
-  border: 2px solid #4c2639;
-  width: 40px;
-  height: 40px;
-  color: #fff;
-  display: inline-block;
-  border-radius: 50%;
-  line-height: 1.6em;
-  font-size: 1.5em;
-  position: relative;
-  left: -22px;
-  top: -11px;
-  background: #2f1e27;
+  margin-bottom: 20px;
 }
 
 form {
   margin-top: 25px;
-  display: inline-block;
 }
 
-.fields {
-  border-left: 2px solid #4c2639;
-}
-
-.container span {
-  margin-bottom: 22px;
-  display: inline-block;
-}
-
-.container span:last-child {
-  margin-bottom: -11px;
+input,
+.MuiAutocomplete-root {
+  margin-bottom: 20px;
+  width: 100%;
 }
 
 input {
-  border: none;
+  border: 1px solid #ccc;
   outline: none;
-  display: inline-block;
-  height: 34px;
-  vertical-align: middle;
-  position: relative;
-  bottom: 14px;
-  right: 9px;
-  border-radius: 22px;
-  width: 220px;
-  box-sizing: border-box;
+  height: 40px;
+  border-radius: 20px;
   padding: 0 18px;
+  box-sizing: border-box;
+  font-size: 1em;
+  background-color: #fff;
 }
 
 input[type="submit"] {
-  background: rgba(197, 62, 126, 0.33) !important;
+  background: #007bff; /* Blue background for the submit button */
   color: #fff;
-  position: relative;
-  left: -10px;
-  top: 0px;
-  width: 100px;
+  border: none;
+  width: 100%;
+  height: 40px;
+  border-radius: 20px;
   cursor: pointer;
+  font-size: 1em;
+  transition: background 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background: #0056b3; /* Darker blue on hover */
+}
+
+.MuiAutocomplete-root .MuiInputBase-root {
+  border-radius: 20px;
+}
+
+.MuiAutocomplete-root .MuiOutlinedInput-root {
+  border-radius: 20px;
+  background: #fff;
+  padding-left: 20px;
+}
+
+.MuiAutocomplete-inputRoot {
+  padding-left: 20px !important;
+}
+
+.MuiInputLabel-outlined {
+  padding-left: 20px;
+}
+
+.MuiInputLabel-shrink {
+  margin-left: 20px;
+  padding-left: 10px;
+  padding-right: 0;
+  background: white;
+}
+
+.loading {
+  margin-top: 15px;
 }

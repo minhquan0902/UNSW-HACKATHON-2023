@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import "../style/Form.css";
-import dataCity from "./cities.json";
-import { Autocomplete, TextField, Box, CircularProgress } from "@mui/material";
+import {
+  Autocomplete,
+  TextField,
+  Box,
+  CircularProgress,
+  Select,
+  MenuItem,
+} from "@mui/material";
 import Map from "./Map";
+
 const Form = () => {
-  dataCity = [
+  const dataCity = [
     "New York City, USA",
     "HCM City, Vietnam",
     "Hanoi, Vietnam",
@@ -43,7 +50,6 @@ const Form = () => {
     "Vancouver, Canada",
     "Jakarta, Indonesia",
     "Kuala Lumpur, Malaysia",
-
     "São Paulo, Brazil",
     "Miami, USA",
     "Las Vegas, USA",
@@ -57,10 +63,10 @@ const Form = () => {
     "Florence",
     "Prague",
   ];
+
   const [location, setLocation] = useState("");
   const [date, setDate] = useState("");
   const [people, setPeople] = useState("");
-
   const [loading, setLoading] = useState(false);
   const [mapData, setMapData] = useState(null);
 
@@ -80,7 +86,6 @@ const Form = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Create the payload for the POST request
     const payload = {
       location: location,
       dayNum: date,
@@ -90,26 +95,20 @@ const Form = () => {
     console.log("payload", payload);
 
     setLoading(true);
-    // Make the API POST request
-    fetch(
-      "https://v5ke4o8bb8.execute-api.ap-southeast-2.amazonaws.com/dev/travel",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      }
-    )
+    fetch("insert-api-url-here", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
       .then((response) => response.json())
       .then((data) => {
-        // Handle the response from the server
         console.log(data);
         setMapData(data);
         setLoading(false);
       })
       .catch((error) => {
-        // Handle any errors that occurred during the request
         console.log(error);
         setLoading(false);
       });
@@ -122,6 +121,7 @@ const Form = () => {
           <div className="container">
             <h2>AnhEmTravelling</h2>
             <h1>Where d'you wanna go?</h1>
+            <br />
 
             <form action="" onSubmit={handleSubmit} id="join-us">
               <Autocomplete
@@ -129,72 +129,80 @@ const Form = () => {
                 options={dataCity}
                 getOptionLabel={(option) => option}
                 value={location}
-                style={{
-                  color: "black",
-
-                  borderRadius: 2,
-                }}
-                sx={{ width: "220px", marginRight: 3 }}
                 onChange={handleAutoCompleteChange}
                 renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        borderRadius: "50px",
-
-                        legend: {
-                          marginLeft: "30px",
+                  <>
+                    <TextField
+                      {...params}
+                      placeholder="Select or type and 'enter' a destination"
+                      InputProps={{
+                        ...params.InputProps,
+                        style: {
+                          height: "40px",
+                          textAlign: "center",
                         },
-                      },
-                      "& .MuiAutocomplete-inputRoot": {
-                        paddingLeft: "20px !important",
-                        borderRadius: "50px",
-                      },
-                      "& .MuiInputLabel-outlined": {
-                        paddingLeft: "20px",
-                      },
-                      "& .MuiInputLabel-shrink": {
-                        marginLeft: "20px",
-                        paddingLeft: "10px",
-                        paddingRight: 0,
-                        background: "white",
-                      },
-                    }}
-                    placeholder="Select a destination"
-                    InputProps={{
-                      ...params.InputProps,
-                      style: {
-                        borderRadius: "1.6rem",
-                        backgroundColor: "white",
-                        height: "34px",
-                      },
-                    }}
-                  />
+                      }}
+                      inputProps={{
+                        ...params.inputProps,
+                        style: {
+                          textAlign: "center",
+                        },
+                      }}
+                    />
+                  </>
                 )}
               />
-
-              <br />
-              <br />
               <span>
-                <input
-                  style={{ color: "black" }}
-                  placeholder="Number of days"
-                  type="text"
+                <Select
                   value={date}
                   onChange={handleDate}
-                />
+                  displayEmpty
+                  style={{
+                    width: "100%",
+                    height: "40px",
+                    backgroundColor: "white",
+                    borderRadius: "20px",
+                    textAlign: "center",
+                  }}
+                  inputProps={{ "aria-label": "Without label" }}
+                >
+                  <MenuItem value="" disabled>
+                    Number of days
+                  </MenuItem>
+                  {[...Array(7).keys()].map((day) => (
+                    <MenuItem key={day + 1} value={day + 1}>
+                      {day + 1}
+                    </MenuItem>
+                  ))}
+                </Select>
               </span>
               <br />
+              <br />
               <span>
-                <input
-                  placeholder="Solo, Friends, Family"
-                  type="text"
+                <Select
                   value={people}
                   onChange={handlePeople}
-                />
+                  displayEmpty
+                  style={{
+                    width: "100%",
+                    height: "40px",
+                    backgroundColor: "white",
+                    borderRadius: "20px",
+                    textAlign: "center",
+                  }}
+                  inputProps={{ "aria-label": "Without label" }}
+                >
+                  <MenuItem value="" disabled>
+                    Solo, Friends, Family
+                  </MenuItem>
+                  <MenuItem value="Solo">Solo</MenuItem>
+                  <MenuItem value="Friends">Friends</MenuItem>
+                  <MenuItem value="Family">Family</MenuItem>
+                </Select>
               </span>
-
+              <br />
+              <br />
+              <br />
               <div className="submit">
                 <input
                   disabled={loading || !location || !date || !people}
@@ -210,7 +218,7 @@ const Form = () => {
                 <CircularProgress />
                 <br />
                 <p style={{ color: "white", fontSize: "24px" }}>
-                  Loading. Please wait ...{" "}
+                  Loading. Please wait ...
                 </p>
               </Box>
             )}

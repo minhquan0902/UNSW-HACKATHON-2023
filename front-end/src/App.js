@@ -17,7 +17,7 @@ function App() {
       {isMobile ? (
         <h2
           style={{
-            color: "white",
+            color: "black",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
